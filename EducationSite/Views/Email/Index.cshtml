@@ -1,0 +1,66 @@
+﻿@model EducationSite.Models.Email
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "Email", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <center>
+                <hr />
+                <table>
+                    <tr>
+                        <td style="width: 80px">
+                            To:
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.to)
+                            @Html.ActionLink("Select Teacher", "SelectTeacher",null, new { @class = "btn btn-primary btn-sm" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Subject:
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.subject)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            Message:
+                        </td>
+                        <td>
+                            @Html.TextAreaFor(model => model.message, new { rows = "15", cols = "25" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 80px">
+                            <input type="submit" value="Send" />
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <span style="color: green">@ViewBag.Message</span>
+            </center>
+        }
+    </div>
+</body>
+
+
+</html>
+
+
+
