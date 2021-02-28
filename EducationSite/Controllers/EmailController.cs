@@ -49,7 +49,7 @@ namespace EducationSite.Controllers
 
 
 
-            var teacher = db.Teachers.Where(t => t.Employee == false);
+            var teacher = db.Teachers.Where(t => t.Employee == false && t.Available == true);
             ArrayList recipient = new ArrayList();
 
             foreach (Teacher t_ in teacher)
