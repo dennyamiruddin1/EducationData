@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,36 +9,78 @@ using System.Net;
 using System.Net.Mail;
 
 
+
 namespace EducationSite.Controllers
 {
     public class EmailController : Controller
     {
         private EducationDataEntities db = new EducationDataEntities();
-        // GET: Email
+
         public ActionResult Index()
+
         {
+          
             return View();
         }
+        // GET: Email
+        public ActionResult IndexTest()
 
-        public ActionResult SelectTeacher()
         {
-            return View(db.Teachers.ToList());
+            var teacher = db.Teachers.Where(t => t.Employee == false && t.Available == true);
+            ArrayList recipient = new ArrayList();
+
+            foreach (Teacher t_ in teacher)
+            {
+                recipient.Add(t_.Email);
+            }
+
+            return View(teacher);
+   
         }
 
         [HttpPost]
         public ActionResult Index(EducationSite.Models.Email model)
         {
-            MailMessage mm = new MailMessage("dennyamiruddin41@gmail.com", model.to);
+
+            const string from_ = "dennyamiruddin41@gmail.com";
+            const string pass_ = "utpocvlfbcqwucds";
+            const string host_ = "smtp.gmail.com";
+            const int port_ = 587;
+
+
+
+            var teacher = db.Teachers.Where(t => t.Employee == false);
+            ArrayList recipient = new ArrayList();
+
+            foreach (Teacher t_ in teacher)
+            {
+                recipient.Add(t_.Email);
+            }
+
+
+
+            //MailMessage mm = new MailMessage(from_, model.to);
+
+            MailMessage mm = new MailMessage();
+
+            mm.From = new MailAddress(from_);
+
+            foreach (String list in recipient)
+            {
+                mm.To.Add(list);
+            }
+
             mm.Subject = model.subject;
+
             mm.Body = model.message;
             mm.IsBodyHtml = false;
 
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
+            smtp.Host = host_;
+            smtp.Port = port_;
             smtp.EnableSsl = true;
 
-            NetworkCredential nc = new NetworkCredential("dennyamiruddin41@gmail.com", "utpocvlfbcqwucds");
+            NetworkCredential nc = new NetworkCredential(from_, pass_);
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = nc;
             smtp.Send(mm);
@@ -45,5 +88,7 @@ namespace EducationSite.Controllers
             ViewBag.Message = "Mail has been sent successfully!";
             return View();
         }
+
+
     }
 }

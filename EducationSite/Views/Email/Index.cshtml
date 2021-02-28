@@ -19,15 +19,14 @@
             <center>
                 <hr />
                 <table>
-                    <tr>
+                    @*<tr>
                         <td style="width: 80px">
                             To:
                         </td>
                         <td>
                             @Html.TextBoxFor(model => model.to)
-                            @Html.ActionLink("Select Teacher", "SelectTeacher",null, new { @class = "btn btn-primary btn-sm" })
                         </td>
-                    </tr>
+                    </tr>*@
                     <tr>
                         <td>
                             Subject:
@@ -56,6 +55,8 @@
                 <span style="color: green">@ViewBag.Message</span>
             </center>
         }
+
+        @Html.ActionLink("Test", "IndexTest", null, new { @class = "btn btn-success btn-sm" })
     </div>
 </body>
 

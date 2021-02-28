@@ -6,9 +6,7 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -42,15 +40,18 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Employee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Available)
-            </td>
-            <td>
+                <center>
+                    @Html.DisplayFor(modelItem => item.Employee)
+                </center>
 
-                @Html.ActionLink("Add", "Add", new { id = item.TeacherID })
             </td>
+            <td>
+                <center>
+                    @Html.DisplayFor(modelItem => item.Available)
+                </center>
+
+            </td>
+            <
         </tr>
     }
 
