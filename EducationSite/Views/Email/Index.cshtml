@@ -16,23 +16,25 @@
     <div>
         @using (Html.BeginForm("Index", "Email", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <center>
+           
                 <hr />
                 <table>
-                    @*<tr>
-                        <td style="width: 80px">
-                            To:
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model.to)
-                        </td>
-                    </tr>*@
+
                     <tr>
                         <td>
                             Subject:
                         </td>
+
                         <td>
                             @Html.TextBoxFor(model => model.subject)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+                        </td>
+                        <td>
+                            <br />
                         </td>
                     </tr>
                     <tr>
@@ -40,24 +42,34 @@
                             Message:
                         </td>
                         <td>
-                            @Html.TextAreaFor(model => model.message, new { rows = "15", cols = "25" })
+                            @Html.TextAreaFor(model => model.message, new { rows = "15", cols = "50" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+                        </td>
+                        <td>
+                            <br />
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 80px">
-                            <input type="submit" value="Send" />
+                            <input type="submit" value="Send" class="btn btn-success" />
                         </td>
-                        <td>
-                        </td>
+
                     </tr>
+
                 </table>
                 <br />
                 <span style="color: green">@ViewBag.Message</span>
-            </center>
+            
         }
 
-        @Html.ActionLink("Test", "IndexTest", null, new { @class = "btn btn-success btn-sm" })
+        @*@Html.ActionLink("Test", "IndexTest", null, new { @class = "btn btn-success btn-sm" })*@
     </div>
+
+    
 </body>
 
 

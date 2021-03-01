@@ -27,6 +27,8 @@ namespace EducationSite.Models
         [StringLength(50)]
         public string FirstName { get; set; }
         [StringLength(50)]
+        [Required(ErrorMessage = "Email Required")]
+        [EmailAddress(ErrorMessage = "Email is an incorrect format")]
         public string Email { get; set; }
         public bool Employee { get; set; }
         public bool Available { get; set; }

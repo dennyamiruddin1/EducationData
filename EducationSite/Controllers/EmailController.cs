@@ -23,20 +23,20 @@ namespace EducationSite.Controllers
             return View();
         }
         // GET: Email
-        public ActionResult IndexTest()
+        //public ActionResult IndexTest()
 
-        {
-            var teacher = db.Teachers.Where(t => t.Employee == false && t.Available == true);
-            ArrayList recipient = new ArrayList();
+        //{
+        //    var teacher = db.Teachers.Where(t => t.Employee == false && t.Available == true);
+        //    ArrayList recipient = new ArrayList();
 
-            foreach (Teacher t_ in teacher)
-            {
-                recipient.Add(t_.Email);
-            }
+        //    foreach (Teacher t_ in teacher)
+        //    {
+        //        recipient.Add(t_.Email);
+        //    }
 
-            return View(teacher);
+        //    return View(teacher);
    
-        }
+        //}
 
         [HttpPost]
         public ActionResult Index(EducationSite.Models.Email model)
@@ -86,6 +86,7 @@ namespace EducationSite.Controllers
             smtp.Send(mm);
 
             ViewBag.Message = "Mail has been sent successfully!";
+            ModelState.Clear();
             return View();
         }
 

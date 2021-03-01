@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EducationSite.Models;
+using System.Net;
 
 namespace EducationSite.Controllers
 {
@@ -50,6 +51,7 @@ namespace EducationSite.Controllers
         {
             if (ModelState.IsValid)
             {
+             
                 db.Teachers.Add(teacher);
                 db.SaveChanges();
                 return RedirectToAction("Index");
